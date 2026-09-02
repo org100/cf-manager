@@ -335,7 +335,7 @@ runs:
             else
               echo "未在 D1 中找到匹配部署邮箱的账户，跳过 DEMO_ACCOUNT_IDS 设置"
             fi
-            echo "demo_ids=${DEMO_IDS:-\"(无匹配账户)\"}" >> $GITHUB_OUTPUT
+            echo "demo_ids=${DEMO_IDS:-(无匹配账户)}" >> $GITHUB_OUTPUT
           else
             echo "未获取到部署邮箱，跳过 DEMO_ACCOUNT_IDS 设置"
             echo "demo_ids=(无邮箱)" >> $GITHUB_OUTPUT
@@ -398,5 +398,5 @@ runs:
         echo "| KV 命名空间 | ${{ inputs.kv_namespace_name }} (${{ steps.kv.outputs.kv_namespace_id }}) |" >> $GITHUB_STEP_SUMMARY
         echo "| 完全覆盖 | ${{ inputs.full_wipe }} |" >> $GITHUB_STEP_SUMMARY
         echo "| 演示模式 | ${{ inputs.demo_mode }} |" >> $GITHUB_STEP_SUMMARY
-        echo "| 演示保护账户 IDs | ${{ steps.secrets.outputs.demo_ids }} |" >> $GITHUB_STEP_SUMMARY
+        echo '| 演示保护账户 IDs | ${{ steps.secrets.outputs.demo_ids }} |' >> $GITHUB_STEP_SUMMARY
         echo "| 访问地址 | ${{ steps.deploy.outputs.deploy_url }} |" >> $GITHUB_STEP_SUMMARY
